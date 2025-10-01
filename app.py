@@ -1,5 +1,5 @@
 import streamlit as st
-from config import *
+
 from utils import parse_markdown_table_to_df
 from rag_chain import build_rag_chain
 
