@@ -7,3 +7,4 @@ chromadb
 pypdf
 sentence-transformers
 pandas
+python-dotenv
