@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import streamlit as st
 from utils import parse_markdown_table_to_df
 from rag_chain import build_rag_chain
-from dotenv import load_dotenv
 import os
 
 # Load environment variables

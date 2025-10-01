@@ -13,16 +13,34 @@ from langchain_core.runnables import RunnablePassthrough
 
 
 load_dotenv()
-GOOGLE_API_KEY= os.getenv("GOOGLE_API_KEY")
-LANGCHAIN_API_KEY= os.getenv("LANGCHAIN_API_KEY")
+ 
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+LANGCHAIN_TRACING_V2 = os.getenv("LANGCHAIN_TRACING_V2")
 
-if not GOOGLE_API_KEY or not LANGCHAIN_API_KEY:
-    raise ValueError("API Keys مش موجودة في .env! تأكد من الملف.")
+# Check keys
+missing = []
+if not GOOGLE_API_KEY:
+    missing.append("GOOGLE_API_KEY")
+if not LANGCHAIN_API_KEY:
+    missing.append("LANGCHAIN_API_KEY")
+if not LANGCHAIN_TRACING_V2:
+    missing.append("LANGCHAIN_TRACING_V2")
 
-os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_API_KEY"] = LANGCHAIN_API_KEY
+if missing:
+    print(f"⚠️ Warning: Missing keys in .env → {', '.join(missing)}")
+    print("➡️ Please add them to your .env file before running the app.")
+else:
+    print("✅ All API Keys loaded successfully!")
 
+# ================================
+# Example function (replace with your actual logic)
+# ================================
+def build_rag_chain():
+    print("🚀 Building RAG Chain with:")
+    print(f"- GOOGLE_API_KEY: {GOOGLE_API_KEY[:6]}... (hidden)")
+    print(f"- LANGCHAIN_API_KEY: {LANGCHAIN_API_KEY[:8]}... (hidden)")
+    print(f"- LANGCHAIN_TRACING_V2: {LANGCHAIN_TRACING_V2}")
 @st.cache_resource
 def build_rag_chain(pdf_folder="information"):
     # Load PDFs
