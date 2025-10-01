@@ -1,5 +1,6 @@
 import os
 import glob
+from dotenv import load_dotenv
 import streamlit as st
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -9,12 +10,11 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
-from dotenv import load_dotenv
 
 
 load_dotenv()
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-LANGCHAIN_API_KEY = os.getenv("LANGCHAIN_API_KEY")
+GOOGLE_API_KEY= os.getenv("GOOGLE_API_KEY")
+LANGCHAIN_API_KEY= os.getenv("LANGCHAIN_API_KEY")
 
 if not GOOGLE_API_KEY or not LANGCHAIN_API_KEY:
     raise ValueError("API Keys مش موجودة في .env! تأكد من الملف.")
