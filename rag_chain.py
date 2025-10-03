@@ -50,7 +50,7 @@ def build_rag_chain(pdf_folder="information"):
         return None
     
     all_splits = []
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=2500, chunk_overlap=50)
     
     for pdf_file in pdf_files:
         try:
@@ -84,6 +84,8 @@ def build_rag_chain(pdf_folder="information"):
                 "أجب بتنسيق Markdown جدول واضح (استخدم | للخلايا، --- للخط الفاصل، واجعل العناوين واضحة). "
                 "إذا لم يكن جدولاً، أجب بنص عادي. "
                 "السياق قد يحتوي على جداول دراسية غير منظمة أو نصوص فوضوية، لذا قم بتنظيم الإجابة بطريقة واضحة. "
+                "اذا كان السياق شبه مكتمل او ناقص جمله حاول تخمنها من المعلوات المتاحه وترجع للمستخدم بإجابه واضحه"
+                "اجعل نص المحادثة مترابط مع بعضه من اول المحادثة الي اخرها "
                 "إذا كان السياق غير كافٍ، قول 'لا يوجد معلومات كافية' مع ذكر المصدر. "
                 "لا تستخدم معلومات خارجية. أجب باللغة العربية الفصحى أو اللهجة المصرية إذا لزم الأمر، "
             ),
